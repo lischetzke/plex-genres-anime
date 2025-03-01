@@ -1,3 +1,8 @@
+# Custom
+jikan4snek_cache/
+.vscode/
+src/settings.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
