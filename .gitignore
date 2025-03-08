@@ -2,6 +2,7 @@
 jikan4snek_cache/
 .vscode/
 src/settings.py
+anime_issues.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

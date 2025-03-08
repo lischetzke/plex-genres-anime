@@ -145,13 +145,28 @@ async def get_mal(jikan, anime):
 
 
 async def process(plex, jikan, library, anime):
+    # Plex: Reload information
+    anime.reload()
+    sleep(1)
+    
+    # Check for autotag label
+    for lb in anime.labels:
+        tag = lb.tag.lower()
+        if tag in ["autotag", "manual"]:
+            # skip
+            print(f'  Already processed, skipping')
+            return
+    
+    # Get information
     mal = await get_mal(jikan, anime)
     if mal == None:
         return
     
-    # Plex: Update genres and label
+    # Plex: Reload information
     anime.reload()
     sleep(3)
+    
+    # Plex: Update genres and label
     print(f'  Remove old genres: {[g.tag for g in anime.genres]}')
     
     new_genres = [m["name"] for m in mal["genres"]]
