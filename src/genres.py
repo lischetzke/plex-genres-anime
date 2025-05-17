@@ -138,7 +138,17 @@ async def get_mal(jikan, anime):
         result = a1_found_norm[0]
     if result == None:
         print('  Could not match')
-        with open('anime_issues.txt', 'a') as file: file.write(f'{anime.title}\n')
+        # Check if title already exists in anime_issues.txt
+        try:
+            with open('anime_issues.txt', 'r', encoding='utf-8') as file:
+                existing_titles = file.read().splitlines()
+                if anime.title not in existing_titles:
+                    with open('anime_issues.txt', 'a', encoding='utf-8') as file:
+                        file.write(f'{anime.title}\n')
+        except FileNotFoundError:
+            # If file doesn't exist, create it and add the title
+            with open('anime_issues.txt', 'w', encoding='utf-8') as file:
+                file.write(f'{anime.title}\n')
         return
     print(f'  Using "[{result["mal_id"]}] {result["title"]}" - {result["url"]}')
     return result

@@ -1,6 +1,6 @@
 # plex-genres-anime
 
-Tested with a collection of 610 Animes running this script on Windows. The script utilizes Jikan to get information from MyAnimeList to set the correct genres. During that it will delete all genres set by Plex.
+Tested with a collection of 657 Animes running this script on Windows. The script utilizes Jikan to get information from MyAnimeList to set the correct genres. During that it will delete all genres set by Plex.
 
 ## How-To
 
@@ -12,3 +12,7 @@ python -m venv venv
 pip install -r requirements.txt
 python src/main.py
 ```
+
+## Contribute
+
+Feel free to fork and add your own matches to `manual_match.py` and create a PR. Open for every change.
