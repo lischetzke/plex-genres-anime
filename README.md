@@ -10,7 +10,8 @@ Rename `src/settings.py.template` to `src/settings.py` and edit the file. Token 
 python -m venv venv
 .\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-python src/main.py
+cd src
+python .\main.py
 ```
 
 ## Contribute
