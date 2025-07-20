@@ -35,9 +35,25 @@ else:
 animes = library.all()
 
 async def startProcessing():
+    finished = []
+    try:
+        with open('finished.txt', 'r', encoding='utf-8') as file:
+            finished = file.read().splitlines()
+    except FileNotFoundError:
+        pass
+    
     for anime in animes:
+        if anime.title in finished:
+            #print(f'Skipping "{anime.title}" as it was marked as processed in file.')
+            continue
+        
         print(f'Processing "{anime.title}":')
         await process(plex, jikan, library, anime)
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(startProcessing())
+if __name__ == '__main__':
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    try:
+        loop.run_until_complete(startProcessing())
+    except KeyboardInterrupt:
+        pass

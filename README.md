@@ -1,6 +1,6 @@
 # plex-genres-anime
 
-Tested with a collection of 657 Animes running this script on Windows. The script utilizes Jikan to get information from MyAnimeList to set the correct genres. During that it will delete all genres set by Plex.
+Tested with a collection of 753 Animes running this script on Windows. The script utilizes Jikan to get information from MyAnimeList to set the correct genres. During that it will delete all genres set by Plex.
 
 ## How-To
 

@@ -153,6 +153,18 @@ async def get_mal(jikan, anime):
     print(f'  Using "[{result["mal_id"]}] {result["title"]}" - {result["url"]}')
     return result
 
+def mark_as_finished(anime):
+    try:
+        with open('finished.txt', 'r', encoding='utf-8') as file:
+            existing_titles = file.read().splitlines()
+            if anime.title not in existing_titles:
+                with open('finished.txt', 'a', encoding='utf-8') as file:
+                    file.write(f'{anime.title}\n')
+    except FileNotFoundError:
+        # If file doesn't exist, create it and add the title
+        with open('finished.txt', 'w', encoding='utf-8') as file:
+            file.write(f'{anime.title}\n')
+
 
 async def process(plex, jikan, library, anime):
     # Plex: Reload information
@@ -165,6 +177,7 @@ async def process(plex, jikan, library, anime):
         if tag in ["autotag", "manual"]:
             # skip
             print(f'  Already processed, skipping')
+            mark_as_finished(anime)
             return
     
     # Get information
@@ -184,5 +197,8 @@ async def process(plex, jikan, library, anime):
     print(f'  Add new genres: {new_genres}')
     print(f'  Add themes as genres: {new_themes}')
     anime.removeGenre(anime.genres).reload().addLabel("autotag").addGenre(new_genres + new_themes).reload()
+    
+    mark_as_finished(anime)
+    
     sleep(5)
 

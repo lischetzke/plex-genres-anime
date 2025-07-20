@@ -6,4 +6,5 @@ manuals = {
     "Corpse Princess": 4581,
     "Darker Than Black: Gaiden": 7338,
     "Tsuyokiss - Cool×Sweet": 1198,
+    "Die rothaarige Schneeprinzessin": 30123,
 }
